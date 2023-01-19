@@ -9,6 +9,7 @@ export default function C() {
   const[t,sett]=useState(0)
   const[shown,sets]=useState(false)
   const[shown2,sets2]=useState(false)
+  const[shown3,sets3]=useState(true)
   const[cityname,setcity]=useState("")
   const[cityname2,setcity2]=useState("")
   const[listb,setlistb]=useState([])
@@ -36,7 +37,7 @@ export default function C() {
       }
       else{
       let table=[...clist,{name:n,number:t,city:c}]
-        setclist(table)
+      setclist(table)
         sets(false)
         setn("")
         sett(0)
@@ -94,6 +95,7 @@ export default function C() {
         setcity('')
         ex2=0
         sets2(true)
+        sets3(false)
       }
     }
   }
@@ -102,13 +104,12 @@ export default function C() {
     let table19=[...listb]
     setclist(table19)
     sets2(false)
+    sets3(true)
   }
   return (
     <div>
       <div className="blue"></div>
       <div className="red"></div>
-      <div className="green"></div>
-      <div className="green2"></div>
       <div className="container">
         <div className="header">
           <span>
@@ -142,7 +143,53 @@ export default function C() {
             )
           )}
         </div>
-        <div className="plus" onClick={show}><p>+</p></div>
+        <div className={shown3 ? "plus":"none"} onClick={show}><p>+</p></div>
+        <div className={shown ? "info":"none"}>
+          <h2>Add Contact</h2>
+          <i onClick={unshow}>×</i>
+          <span>
+            <input type="text"  value={n} onChange={(e)=>{setn(e.target.value)}} id="" placeholder="Name Here.."/>
+            <input type="number"  value={t} onChange={(e)=>{sett(e.target.value)}} id="" placeholder="Number Here..."/>
+            <input type="text" value={c} onChange={(e)=>{setc(e.target.value)}} placeholder="City Here..."/>
+            <button onClick={add}>ADD</button>
+          </span>
+        </div>
+      </div>
+
+      <div className="mobile">
+        <div className="header">
+          <span>
+            <h2>Contacts</h2>
+            <i onClick={sortf}><img src={sortt} alt="" /></i>
+          </span>
+        </div>
+        <div className="search-bar">
+<input className="search" type="text" value={cityname} onChange={(e)=>{setcity(e.target.value)}} placeholder="search by city..."/>
+          <img onClick={()=>{search(cityname)}} src={find} alt="" />
+        </div>
+        <div className="list">
+          <div className={shown2 ? "header":"none"}>
+            <h3 className={shown2 ? "all2":"none"}>Contact with city {cityname2}</h3>
+            <h3 className={shown2 ? "all":"none"} onClick={all}>Show All</h3>
+          </div>
+          {clist.map(
+            (e)=>( 
+              <div className="contact">
+                <span>
+                  <h3>{e.name}</h3>
+                  <span>
+                    <p muted>{e.number}</p>
+                    <p muted>{e.city}</p>
+                  </span>
+                </span>
+                <span>
+                  <button key={e.number} onClick={()=>delet(e.number)}><img src={img2} alt="" /></button>
+                </span>
+              </div>
+            )
+          )}
+        </div>
+        <div className={shown3 ? "plus":"none"} onClick={show}><p>+</p></div>
         <div className={shown ? "info":"none"}>
           <h2>Add Contact</h2>
           <i onClick={unshow}>×</i>

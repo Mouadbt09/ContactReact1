@@ -269,6 +269,7 @@ button img{
         height: 99vh;
         padding: 0px;
         margin: 0px;
+        background: none;
     }
     .mobile{
         display: block;
@@ -282,5 +283,8 @@ button img{
     }
     .list{
         height: 78%;
+    }
+    .blue{
+        display: none;
     }
 }

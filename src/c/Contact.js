@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './ap.css'
-import img1 from "./search.png"
 import img2 from "./trash.png"
 import sortt from "./sort.png"
 import find from "./find.png"
